@@ -75,5 +75,28 @@ function setupSponsorTicker() {
   track.style.setProperty("--ticker-duration", `${duration}s`);
 }
 
+function setupHeroPhotoSlot() {
+  const photo = document.querySelector(".hero-photo");
+  if (!photo) {
+    return;
+  }
+
+  const slot = photo.closest(".hero-photo-slot");
+  if (!slot) {
+    return;
+  }
+
+  const showPhoto = () => {
+    slot.classList.add("has-photo");
+  };
+
+  if (photo.complete && photo.naturalWidth > 0) {
+    showPhoto();
+  }
+
+  photo.addEventListener("load", showPhoto, { once: true });
+}
+
 setupSponsorTicker();
+setupHeroPhotoSlot();
 window.addEventListener("resize", setupSponsorTicker);
