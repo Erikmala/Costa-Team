@@ -194,7 +194,6 @@ h1 {
   background:
     linear-gradient(140deg, rgba(13, 60, 120, 0.08), rgba(240, 182, 56, 0.12)),
     var(--paper);
-  aspect-ratio: 1;
   min-height: 420px;
   display: flex;
   align-items: center;
@@ -559,7 +558,6 @@ h1 {
 
   .hero-photo-slot {
     min-height: 280px;
-    aspect-ratio: auto;
   }
 
   .results-layout {
