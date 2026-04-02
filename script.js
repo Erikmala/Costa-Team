@@ -18,6 +18,12 @@ document.querySelectorAll(".reveal").forEach((element, index) => {
   observer.observe(element);
 });
 
+let resizeTimeout;
+function debounceResize(callback, wait = 300) {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(callback, wait);
+}
+
 function setupSponsorTicker() {
   const ticker = document.querySelector(".sponsor-ticker");
   const track = document.querySelector(".sponsor-track");
@@ -51,7 +57,6 @@ function setupSponsorTicker() {
     return pill;
   };
 
-  // Fill the first group until it is wider than the viewport portion of ticker.
   const targetWidth = ticker.clientWidth * 1.2;
   let index = 0;
   while (groupA.scrollWidth < targetWidth || index < labels.length) {
@@ -99,4 +104,4 @@ function setupHeroPhotoSlot() {
 
 setupSponsorTicker();
 setupHeroPhotoSlot();
-window.addEventListener("resize", setupSponsorTicker);
+window.addEventListener("resize", () => debounceResize(setupSponsorTicker), { passive: true });
